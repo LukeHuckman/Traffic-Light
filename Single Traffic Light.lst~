@@ -18,7 +18,7 @@ Single Traffic Light                                                            
                         17
 001A 79FF               18     DELAY:  MOV     R1,#0FFH
 001C 7AFF               19     DELAY1: MOV     R2,#0FFH
-001E 7B30               20     DELAY2: MOV     R3,#030H
+001E 7B20               20     DELAY2: MOV     R3,#020H
 0020 DBFE               21     DELAY3: DJNZ    R3,DELAY3
 0022 DAFA               22             DJNZ    R2,DELAY2
 0024 D9F6               23             DJNZ    R1,DELAY1

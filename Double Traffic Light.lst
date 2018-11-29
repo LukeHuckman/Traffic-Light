@@ -1,38 +1,47 @@
-Single Traffic Light                                                                                                    PAGE 1
+Double Traffic Light                                                                                                    PAGE 1
                          1             ORG     00H
 0000 0102                2             AJMP    MAIN
                          3
 0002 7400                4     MAIN:   MOV     A,#00H
 0004 F580                5             MOV     P0,A
                          6
-0006 7406                7     START:  MOV     A,#06H
-0008 F580                8             MOV     P0,A
-000A 111A                9             ACALL   DELAY
-000C 7403               10             MOV     A,#03H
-000E F580               11             MOV     P0,A
-0010 111A               12             ACALL   DELAY
-0012 7405               13             MOV     A,#05H
-0014 F580               14             MOV     P0,A
-0016 1127               15             ACALL   DELSH
-0018 0106               16             AJMP    START
-                        17
-001A 79FF               18     DELAY:  MOV     R1,#0FFH
-001C 7AFF               19     DELAY1: MOV     R2,#0FFH
-001E 7B30               20     DELAY2: MOV     R3,#030H
-0020 DBFE               21     DELAY3: DJNZ    R3,DELAY3
-0022 DAFA               22             DJNZ    R2,DELAY2
-0024 D9F6               23             DJNZ    R1,DELAY1
-0026 22                 24             RET
-                        25
-0027 79FF               26     DELSH:  MOV     R1,#0FFH
-0029 7AFF               27     DELSH1: MOV     R2,#0FFH
-002B 7B10               28     DELSH2: MOV     R3,#010H
-002D DBFE               29     DELSH3: DJNZ    R3,DELSH3
-002F DAFA               30             DJNZ    R2,DELSH2
-0031 D9F6               31             DJNZ    R1,DELSH1
-0033 22                 32             RET
-                        33
-                        34             END
+                         7             ; 06H = RED, #05H = YELLOW, 03H = GREEN
+0006 7406                8     START:  MOV     A,#06H
+0008 F580                9             MOV     P0,A
+000A 75F003             10             MOV     B,#03H
+000D 85F0A0             11             MOV     P2,B
+0010 112E               12             ACALL   DELAY
+0012 75F005             13             MOV     B,#05H
+0015 85F0A0             14             MOV     P2,B
+0018 113B               15             ACALL   DELSH
+                        16
+001A 7403               17             MOV     A,#03H
+001C F580               18             MOV     P0,A
+001E 75F006             19             MOV     B,#06H
+0021 85F0A0             20             MOV     P2,B
+0024 112E               21             ACALL   DELAY
+0026 7405               22             MOV     A,#05H
+0028 F580               23             MOV     P0,A
+002A 113B               24             ACALL   DELSH
+002C 0106               25             AJMP    START
+                        26
+002E 79FF               27     DELAY:  MOV     R1,#0FFH
+0030 7AFF               28     DELAY1: MOV     R2,#0FFH
+0032 7B30               29     DELAY2: MOV     R3,#030H
+0034 DBFE               30     DELAY3: DJNZ    R3,DELAY3
+0036 DAFA               31             DJNZ    R2,DELAY2
+0038 D9F6               32             DJNZ    R1,DELAY1
+003A 22                 33             RET
+                        34
+003B 79FF               35     DELSH:  MOV     R1,#0FFH
+003D 7AFF               36     DELSH1: MOV     R2,#0FFH
+003F 7B10               37     DELSH2: MOV     R3,#010H
+0041 DBFE               38     DELSH3: DJNZ    R3,DELSH3
+0043 DAFA               39             DJNZ    R2,DELSH2
+0045 D9F6               40             DJNZ    R1,DELSH1
+0047 22                 41             RET
+                        42
+                        43             END
 ASSEMBLY COMPLETE, NO ERRORS FOUND, NO WARNINGS
 
 
@@ -49,7 +58,7 @@ ADDH . . . . . . . . . . . . . . . .  D  ADDR  00F5H  NOT USED
 ADDL . . . . . . . . . . . . . . . .  D  ADDR  00F4H  NOT USED
 AUXR . . . . . . . . . . . . . . . .  D  ADDR  008EH  NOT USED
 AUXR1. . . . . . . . . . . . . . . .  D  ADDR  00A2H  NOT USED
-B. . . . . . . . . . . . . . . . . .  D  ADDR  00F0H  NOT USED
+B. . . . . . . . . . . . . . . . . .  D  ADDR  00F0H
 BDRCON . . . . . . . . . . . . . . .  D  ADDR  009BH  NOT USED
 BDRCON_1 . . . . . . . . . . . . . .  D  ADDR  009CH  NOT USED
 BRL. . . . . . . . . . . . . . . . .  D  ADDR  009AH  NOT USED
@@ -90,14 +99,14 @@ CPRL2. . . . . . . . . . . . . . . .  B  ADDR  00C8H  NOT USED
 CR . . . . . . . . . . . . . . . . .  B  ADDR  00DEH  NOT USED
 CT2. . . . . . . . . . . . . . . . .  B  ADDR  00C9H  NOT USED
 CY . . . . . . . . . . . . . . . . .  B  ADDR  00D7H  NOT USED
-DELAY. . . . . . . . . . . . . . . .  C  ADDR  001AH
-DELAY1 . . . . . . . . . . . . . . .  C  ADDR  001CH
-DELAY2 . . . . . . . . . . . . . . .  C  ADDR  001EH
-DELAY3 . . . . . . . . . . . . . . .  C  ADDR  0020H
-DELSH. . . . . . . . . . . . . . . .  C  ADDR  0027H
-DELSH1 . . . . . . . . . . . . . . .  C  ADDR  0029H
-DELSH2 . . . . . . . . . . . . . . .  C  ADDR  002BH
-DELSH3 . . . . . . . . . . . . . . .  C  ADDR  002DH
+DELAY. . . . . . . . . . . . . . . .  C  ADDR  002EH
+DELAY1 . . . . . . . . . . . . . . .  C  ADDR  0030H
+DELAY2 . . . . . . . . . . . . . . .  C  ADDR  0032H
+DELAY3 . . . . . . . . . . . . . . .  C  ADDR  0034H
+DELSH. . . . . . . . . . . . . . . .  C  ADDR  003BH
+DELSH1 . . . . . . . . . . . . . . .  C  ADDR  003DH
+DELSH2 . . . . . . . . . . . . . . .  C  ADDR  003FH
+DELSH3 . . . . . . . . . . . . . . .  C  ADDR  0041H
 DP0H . . . . . . . . . . . . . . . .  D  ADDR  0083H  NOT USED
 DP0L . . . . . . . . . . . . . . . .  D  ADDR  0082H  NOT USED
 DP1H . . . . . . . . . . . . . . . .  D  ADDR  0085H  NOT USED
@@ -143,7 +152,7 @@ P0 . . . . . . . . . . . . . . . . .  D  ADDR  0080H
 P1 . . . . . . . . . . . . . . . . .  D  ADDR  0090H  NOT USED
 P1M1 . . . . . . . . . . . . . . . .  D  ADDR  00D4H  NOT USED
 P1M2 . . . . . . . . . . . . . . . .  D  ADDR  00E2H  NOT USED
-P2 . . . . . . . . . . . . . . . . .  D  ADDR  00A0H  NOT USED
+P2 . . . . . . . . . . . . . . . . .  D  ADDR  00A0H
 P3 . . . . . . . . . . . . . . . . .  D  ADDR  00B0H  NOT USED
 P3M1 . . . . . . . . . . . . . . . .  D  ADDR  00D5H  NOT USED
 P3M2 . . . . . . . . . . . . . . . .  D  ADDR  00E3H  NOT USED
