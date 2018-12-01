@@ -6,80 +6,86 @@ Double Traffic Light With Timer                                                 
 0004 F580                5             MOV     P0,A
                          6
                          7             ; 06H = RED, #05H = YELLOW, 03H = GREEN
-0006 7406                8     START:  MOV     A,#06H
-0008 F580                9             MOV     P0,A
-000A 75F003             10             MOV     B,#03H
-000D 85F0A0             11             MOV     P2,B
-0010 112E               12             ACALL   TIME
-0012 75F005             13             MOV     B,#05H
+0006 759000              8     START:  MOV     P1,#00H
+0009 75B000              9             MOV     P3,#00H
+000C 7406               10             MOV     A,#06H
+000E F580               11             MOV     P0,A
+0010 11AA               12             ACALL   DELSH
+0012 75F003             13             MOV     B,#03H
 0015 85F0A0             14             MOV     P2,B
-0018 119A               15             ACALL   DELSH
-                        16
-001A 7403               17             MOV     A,#03H
-001C F580               18             MOV     P0,A
-001E 75F006             19             MOV     B,#06H
-0021 85F0A0             20             MOV     P2,B
-0024 112E               21             ACALL   TIME
-0026 7405               22             MOV     A,#05H
-0028 F580               23             MOV     P0,A
-002A 119A               24             ACALL   DELSH
-002C 0106               25             AJMP    START
-                        26
-002E 7403               27     TIME:   MOV     A,#03H
-0030 F5B0               28             MOV     P3,A
-0032 75F03F             29             MOV     B,#03FH
-0035 85F090             30             MOV     P1,B
-0038 118D               31             ACALL   DELAY
-003A 7400               32             MOV     A,#00H
-003C F5B0               33             MOV     P3,A
-003E 75F067             34             MOV     B,#067H
-0041 85F090             35             MOV     P1,B
-0044 118D               36             ACALL   DELAY
-0046 75F07F             37             MOV     B,#07FH
-0049 85F090             38             MOV     P1,B
-004C 118D               39             ACALL   DELAY
-004E 75F007             40             MOV     B,#07H
+0018 113E               15             ACALL   TIME
+001A 75F005             16             MOV     B,#05H
+001D 85F0A0             17             MOV     P2,B
+0020 11AA               18             ACALL   DELSH
+                        19
+0022 759000             20             MOV     P1,#00H
+0025 75B000             21             MOV     P3,#00H
+0028 75F006             22             MOV     B,#06H
+002B 85F0A0             23             MOV     P2,B
+002E 11AA               24             ACALL   DELSH
+0030 7403               25             MOV     A,#03H
+0032 F580               26             MOV     P0,A
+0034 113E               27             ACALL   TIME
+0036 7405               28             MOV     A,#05H
+0038 F580               29             MOV     P0,A
+003A 11AA               30             ACALL   DELSH
+003C 0106               31             AJMP    START
+                        32
+003E 7403               33     TIME:   MOV     A,#03H
+0040 F5B0               34             MOV     P3,A
+0042 75F03F             35             MOV     B,#03FH
+0045 85F090             36             MOV     P1,B
+0048 119D               37             ACALL   DELAY
+004A 7400               38             MOV     A,#00H
+004C F5B0               39             MOV     P3,A
+004E 75F067             40             MOV     B,#067H
 0051 85F090             41             MOV     P1,B
-0054 118D               42             ACALL   DELAY
-0056 75F07D             43             MOV     B,#07DH
+0054 119D               42             ACALL   DELAY
+0056 75F07F             43             MOV     B,#07FH
 0059 85F090             44             MOV     P1,B
-005C 118D               45             ACALL   DELAY
-005E 75F06D             46             MOV     B,#06DH
+005C 119D               45             ACALL   DELAY
+005E 75F007             46             MOV     B,#07H
 0061 85F090             47             MOV     P1,B
-0064 118D               48             ACALL   DELAY
-0066 75F066             49             MOV     B,#066H
+0064 119D               48             ACALL   DELAY
+0066 75F07D             49             MOV     B,#07DH
 0069 85F090             50             MOV     P1,B
-006C 118D               51             ACALL   DELAY
-006E 75F04F             52             MOV     B,#04FH
+006C 119D               51             ACALL   DELAY
+006E 75F06D             52             MOV     B,#06DH
 0071 85F090             53             MOV     P1,B
-0074 118D               54             ACALL   DELAY
-0076 75F05B             55             MOV     B,#05BH
+0074 119D               54             ACALL   DELAY
+0076 75F066             55             MOV     B,#066H
 0079 85F090             56             MOV     P1,B
-007C 118D               57             ACALL   DELAY
-007E 75F006             58             MOV     B,#06H
+007C 119D               57             ACALL   DELAY
+007E 75F04F             58             MOV     B,#04FH
 0081 85F090             59             MOV     P1,B
-0084 118D               60             ACALL   DELAY
-0086 75F03F             61             MOV     B,#03FH
+0084 119D               60             ACALL   DELAY
+0086 75F05B             61             MOV     B,#05BH
 0089 85F090             62             MOV     P1,B
-008C 22                 63             RET
-                        64
-008D 79FF               65     DELAY:  MOV     R1,#0FFH
-008F 7AFF               66     DELAY1: MOV     R2,#0FFH
-0091 7B06               67     DELAY2: MOV     R3,#06H
-0093 DBFE               68     DELAY3: DJNZ    R3,DELAY3
-0095 DAFA               69             DJNZ    R2,DELAY2
-0097 D9F6               70             DJNZ    R1,DELAY1
-0099 22                 71             RET
-                        72
-009A 79FF               73     DELSH:  MOV     R1,#0FFH
-009C 7AFF               74     DELSH1: MOV     R2,#0FFH
-009E 7B10               75     DELSH2: MOV     R3,#010H
-00A0 DBFE               76     DELSH3: DJNZ    R3,DELSH3
-00A2 DAFA               77             DJNZ    R2,DELSH2
-00A4 D9F6               78             DJNZ    R1,DELSH1
-00A6 22                 79             RET
-                        80
-                        81             END
+008C 119D               63             ACALL   DELAY
+008E 75F006             64             MOV     B,#06H
+0091 85F090             65             MOV     P1,B
+0094 119D               66             ACALL   DELAY
+0096 75F03F             67             MOV     B,#03FH
+0099 85F090             68             MOV     P1,B
+009C 22                 69             RET
+                        70
+009D 79FF               71     DELAY:  MOV     R1,#0FFH
+009F 7AF0               72     DELAY1: MOV     R2,#0F0H
+00A1 7B06               73     DELAY2: MOV     R3,#06H
+00A3 DBFE               74     DELAY3: DJNZ    R3,DELAY3
+00A5 DAFA               75             DJNZ    R2,DELAY2
+00A7 D9F6               76             DJNZ    R1,DELAY1
+00A9 22                 77             RET
+                        78
+00AA 79FF               79     DELSH:  MOV     R1,#0FFH
+00AC 7AFF               80     DELSH1: MOV     R2,#0FFH
+00AE 7B10               81     DELSH2: MOV     R3,#010H
+00B0 DBFE               82     DELSH3: DJNZ    R3,DELSH3
+00B2 DAFA               83             DJNZ    R2,DELSH2
+00B4 D9F6               84             DJNZ    R1,DELSH1
+00B6 22                 85             RET
+                        86
+                        87             END
 ASSEMBLY COMPLETE, NO ERRORS FOUND, NO WARNINGS
 
 
@@ -137,14 +143,14 @@ CPRL2. . . . . . . . . . . . . . . .  B  ADDR  00C8H  NOT USED
 CR . . . . . . . . . . . . . . . . .  B  ADDR  00DEH  NOT USED
 CT2. . . . . . . . . . . . . . . . .  B  ADDR  00C9H  NOT USED
 CY . . . . . . . . . . . . . . . . .  B  ADDR  00D7H  NOT USED
-DELAY. . . . . . . . . . . . . . . .  C  ADDR  008DH
-DELAY1 . . . . . . . . . . . . . . .  C  ADDR  008FH
-DELAY2 . . . . . . . . . . . . . . .  C  ADDR  0091H
-DELAY3 . . . . . . . . . . . . . . .  C  ADDR  0093H
-DELSH. . . . . . . . . . . . . . . .  C  ADDR  009AH
-DELSH1 . . . . . . . . . . . . . . .  C  ADDR  009CH
-DELSH2 . . . . . . . . . . . . . . .  C  ADDR  009EH
-DELSH3 . . . . . . . . . . . . . . .  C  ADDR  00A0H
+DELAY. . . . . . . . . . . . . . . .  C  ADDR  009DH
+DELAY1 . . . . . . . . . . . . . . .  C  ADDR  009FH
+DELAY2 . . . . . . . . . . . . . . .  C  ADDR  00A1H
+DELAY3 . . . . . . . . . . . . . . .  C  ADDR  00A3H
+DELSH. . . . . . . . . . . . . . . .  C  ADDR  00AAH
+DELSH1 . . . . . . . . . . . . . . .  C  ADDR  00ACH
+DELSH2 . . . . . . . . . . . . . . .  C  ADDR  00AEH
+DELSH3 . . . . . . . . . . . . . . .  C  ADDR  00B0H
 DP0H . . . . . . . . . . . . . . . .  D  ADDR  0083H  NOT USED
 DP0L . . . . . . . . . . . . . . . .  D  ADDR  0082H  NOT USED
 DP1H . . . . . . . . . . . . . . . .  D  ADDR  0085H  NOT USED
@@ -259,7 +265,7 @@ TH0. . . . . . . . . . . . . . . . .  D  ADDR  008CH  NOT USED
 TH1. . . . . . . . . . . . . . . . .  D  ADDR  008DH  NOT USED
 TH2. . . . . . . . . . . . . . . . .  D  ADDR  00CDH  NOT USED
 TI . . . . . . . . . . . . . . . . .  B  ADDR  0099H  NOT USED
-TIME . . . . . . . . . . . . . . . .  C  ADDR  002EH
+TIME . . . . . . . . . . . . . . . .  C  ADDR  003EH
 TIMER0 . . . . . . . . . . . . . . .  C  ADDR  000BH  NOT USED
 TIMER1 . . . . . . . . . . . . . . .  C  ADDR  001BH  NOT USED
 TIMER2 . . . . . . . . . . . . . . .  C  ADDR  002BH  NOT USED
