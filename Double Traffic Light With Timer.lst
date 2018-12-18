@@ -40,7 +40,7 @@ Double Traffic Light With Timer                                                 
 004E 11A3               39             ACALL   DELAY
 0050 7400               40             MOV     A,#00H
 0052 F5B0               41             MOV     P3,A
-0054 75F067             42             MOV     B,#067H
+0054 75F06F             42             MOV     B,#06FH
 0057 85F090             43             MOV     P1,B
 005A 11A3               44             ACALL   DELAY
 005C 75F07F             45             MOV     B,#07FH

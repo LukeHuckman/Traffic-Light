@@ -42,10 +42,10 @@ Quad Traffic Light With Timer                                                   
 0053 85F0A0             41             MOV     P2,B
 0056 11F0               42             ACALL   DELSH
 0058 741E               43             MOV     A,#1EH
-005A F5A0               44             MOV     P2,A
+005A F580               44             MOV     P0,A
 005C 1184               45             ACALL   TIME
 005E 742E               46             MOV     A,#2EH
-0060 F5A0               47             MOV     P2,A
+0060 F580               47             MOV     P0,A
 0062 11F0               48             ACALL   DELSH
                         49
 0064 759000             50             MOV     P1,#00H
@@ -56,10 +56,10 @@ Quad Traffic Light With Timer                                                   
 0071 85F0A0             55             MOV     P2,B
 0074 11F0               56             ACALL   DELSH
 0076 741E               57             MOV     A,#1EH
-0078 F580               58             MOV     P0,A
+0078 F5A0               58             MOV     P2,A
 007A 1184               59             ACALL   TIME
 007C 742E               60             MOV     A,#2EH
-007E F580               61             MOV     P0,A
+007E F5A0               61             MOV     P2,A
 0080 11F0               62             ACALL   DELSH
 0082 0106               63             AJMP    START
                         64
@@ -70,7 +70,7 @@ Quad Traffic Light With Timer                                                   
 008E 11E3               69             ACALL   DELAY
 0090 7400               70             MOV     A,#00H
 0092 F5B0               71             MOV     P3,A
-0094 75F067             72             MOV     B,#067H
+0094 75F06F             72             MOV     B,#06FH
 0097 85F090             73             MOV     P1,B
 009A 11E3               74             ACALL   DELAY
 009C 75F07F             75             MOV     B,#07FH
